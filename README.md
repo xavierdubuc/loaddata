@@ -6,12 +6,12 @@ Quick start
 
 Add "xd_loaddata" to your INSTALLED_APPS setting like this::
 
-    ```
-    INSTALLED_APPS = [
-        ...
-        'xd_loaddata',
-    ]
-    ```
+```python
+INSTALLED_APPS = [
+    ...
+    'xd_loaddata',
+]
+```
 
 Signal
 -----------
@@ -27,30 +27,30 @@ The signal comes with two params :
 
 Example ::
 
-    ```
-    from django.dispatch import receiver
-    from xd_loaddata.signals import post_loaddata
-    @receiver(post_loaddata)
-    def post_loaddata_handling(sender, fixtures, fixture_labels, **kwargs):
-        # your code here
-    ```
+```python
+from django.dispatch import receiver
+from xd_loaddata.signals import post_loaddata
+@receiver(post_loaddata)
+def post_loaddata_handling(sender, fixtures, fixture_labels, **kwargs):
+    # your code here
+```
 
 Don't forget to load your signals in the `apps.py` like this ::
 
-    ```
-    from django.apps import AppConfig
+```python
+from django.apps import AppConfig
 
-    class MyAppConfig(AppConfig):
-        name = 'myapp'
+class MyAppConfig(AppConfig):
+    name = 'myapp'
 
-        def ready(self):
-            from . import signals
-    ```
+    def ready(self):
+        from . import signals
+```
 
 You'll probably also need to define your app config in the init file of your module ::
 
-    ```
-    # myapp/__init__.py
+```python
+# myapp/__init__.py
 
-    default_app_config = 'myapp.apps.MyAppConfig'
-    ```
+default_app_config = 'myapp.apps.MyAppConfig'
+```
